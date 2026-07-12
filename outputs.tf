@@ -1,3 +1,7 @@
+output "fluid_relay_servers_id" {
+  description = "Map of id values across all fluid_relay_servers, keyed the same as var.fluid_relay_servers"
+  value       = { for k, v in azurerm_fluid_relay_server.fluid_relay_servers : k => v.id }
+}
 output "fluid_relay_servers_customer_managed_key" {
   description = "Map of customer_managed_key values across all fluid_relay_servers, keyed the same as var.fluid_relay_servers"
   value       = { for k, v in azurerm_fluid_relay_server.fluid_relay_servers : k => v.customer_managed_key }
