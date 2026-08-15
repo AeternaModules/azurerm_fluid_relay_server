@@ -4,7 +4,7 @@ output "fluid_relay_servers_id" {
 }
 output "fluid_relay_servers_customer_managed_key" {
   description = "Map of customer_managed_key values across all fluid_relay_servers, keyed the same as var.fluid_relay_servers"
-  value       = { for k, v in azurerm_fluid_relay_server.fluid_relay_servers : k => v.customer_managed_key if v.customer_managed_key != null && length(v.customer_managed_key) > 0 }
+  value       = { for k, v in azurerm_fluid_relay_server.fluid_relay_servers : k => one(v.customer_managed_key) if v.customer_managed_key != null && length(v.customer_managed_key) > 0 }
 }
 output "fluid_relay_servers_frs_tenant_id" {
   description = "Map of frs_tenant_id values across all fluid_relay_servers, keyed the same as var.fluid_relay_servers"
@@ -12,7 +12,7 @@ output "fluid_relay_servers_frs_tenant_id" {
 }
 output "fluid_relay_servers_identity" {
   description = "Map of identity values across all fluid_relay_servers, keyed the same as var.fluid_relay_servers"
-  value       = { for k, v in azurerm_fluid_relay_server.fluid_relay_servers : k => v.identity if v.identity != null && length(v.identity) > 0 }
+  value       = { for k, v in azurerm_fluid_relay_server.fluid_relay_servers : k => one(v.identity) if v.identity != null && length(v.identity) > 0 }
 }
 output "fluid_relay_servers_location" {
   description = "Map of location values across all fluid_relay_servers, keyed the same as var.fluid_relay_servers"
